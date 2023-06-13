@@ -15,9 +15,23 @@ const storage = multer.diskStorage({
       cb(null, file.originalname);
     },
   });
-  const upload = multer({ storage });
+  
+  const fileFilter = function (req, file, cb) {
+    // Check the file type
+     let fileType = file.originalname.split('.').pop() 
+    if ( fileType == 'jpeg' ||fileType == 'png' ||fileType == 'jpg'||fileType == 'pdf') {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type. Only JPEG, PNG, JPG and PDF files are allowed.'), false);
+    }
+  };
+  
+  
+  const upload = multer({ storage: storage,
+    fileFilter: fileFilter});
+  
 
-router.post("/verification",validation, upload.array('documents'), userController.postData)
+router.post("/verification", upload.array('documents'),validation, userController.postData)
 router.get("/get-user", userController.getData)
 
 module.exports = router;

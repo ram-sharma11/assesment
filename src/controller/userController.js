@@ -7,7 +7,7 @@ const {
 
 module.exports.postData = async (req, res) => {
     try {
-        const response = await usercreated(req.body)
+        const response = await usercreated(req)
         return res.status(200).json(response);
       } catch (err) {
         return errorResponse(err, res);

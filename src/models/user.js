@@ -45,16 +45,16 @@ const userSchema = new mongoose.Schema({
     documents: [{
       fileName: {
         type: String,
-        required: true,
+  
       },
       fileType: {
         type: String,
-        enum: ['image', 'pdf'],
-        required: true,
+    
+    
       },
       file: {
         type: String,
-        required: true,
+  
       },
     }]
 });

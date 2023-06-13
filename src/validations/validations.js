@@ -18,11 +18,6 @@ module.exports.registerValidations = joi.object({
     sameAsResidential: joi.boolean().required(),
     permanentstreet1 : joi.string().optional(),
     permanentstreet2 : joi.string().optional(),
-    documents: joi.array().min(2).items(joi.object({
-        fileName: joi.string().required(),
-        fileType: joi.string().valid('image', 'pdf').required(),
-        file: joi.string().required()
-      })).required()
 })
 
 

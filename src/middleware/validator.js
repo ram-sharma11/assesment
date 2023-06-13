@@ -6,6 +6,10 @@ const { errorResponse,
 
 exports.validation = async(req,res,next) =>{
     try {
+        if (req.files.length < 2) {
+            throw new CustomError("Please upload at least 2 documents", 400,);
+        }
+
         const value = JOIValidationRegister(req.body);
         if (value.error) {
             console.log(value.error.details[0].message)
@@ -16,4 +20,4 @@ exports.validation = async(req,res,next) =>{
     } catch (err) {
         return errorResponse(err, res);
     }
-}
+} 
